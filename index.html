@@ -1,0 +1,2149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AZ-104 Study Hub</title>
+
+<style>
+:root {
+    --bg: #f5f5f2;
+    --surface: #ffffff;
+    --surface-soft: #f0f1ee;
+    --text: #242625;
+    --muted: #6c716d;
+    --border: #dedfdb;
+    --accent: #3f6473;
+    --accent-soft: #e6eef1;
+    --success: #59725f;
+    --warning: #9a7a48;
+    --shadow: 0 8px 30px rgba(30,35,32,.06);
+    --radius: 14px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.6;
+}
+
+/* ---------- HEADER ---------- */
+
+header {
+    background: #252a29;
+    color: white;
+    padding: 42px 28px 36px;
+}
+
+.header-inner {
+    max-width: 1250px;
+    margin: auto;
+}
+
+.eyebrow {
+    color: #aebcbf;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+h1 {
+    margin: 8px 0 5px;
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(34px, 5vw, 54px);
+    letter-spacing: -.03em;
+}
+
+.subtitle {
+    max-width: 720px;
+    color: #c7ccca;
+    margin: 0;
+}
+
+/* ---------- TOP BAR ---------- */
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(245,245,242,.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+}
+
+.topbar-inner {
+    max-width: 1250px;
+    margin: auto;
+    padding: 12px 20px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.search {
+    flex: 1;
+    padding: 11px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.search:focus {
+    border-color: var(--accent);
+}
+
+button {
+    border: 1px solid var(--border);
+    background: white;
+    color: var(--text);
+    border-radius: 9px;
+    padding: 10px 13px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--surface-soft);
+}
+
+/* ---------- LAYOUT ---------- */
+
+.layout {
+    max-width: 1250px;
+    margin: 28px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 28px;
+}
+
+aside {
+    position: sticky;
+    top: 72px;
+    align-self: start;
+}
+
+.nav-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+}
+
+.nav-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.nav-link {
+    display: block;
+    padding: 8px 10px;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.nav-link:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+/* ---------- DASHBOARD ---------- */
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+}
+
+.stat-number {
+    font-size: 28px;
+    font-weight: 650;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.progress {
+    height: 7px;
+    background: var(--surface-soft);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--success);
+    transition: width .3s ease;
+}
+
+/* ---------- SECTIONS ---------- */
+
+.section {
+    margin-bottom: 42px;
+    scroll-margin-top: 90px;
+}
+
+.section-header {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.section-number {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .1em;
+}
+
+h2 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 31px;
+}
+
+.section-description {
+    color: var(--muted);
+    margin: 0 0 18px;
+}
+
+/* ---------- TOPIC CARDS ---------- */
+
+.topic {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.topic-header {
+    padding: 17px 18px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    cursor: pointer;
+}
+
+.topic-header:hover {
+    background: #fafbf9;
+}
+
+.topic-title {
+    flex: 1;
+    font-weight: 650;
+}
+
+.topic-tag {
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 20px;
+    padding: 4px 9px;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.chevron {
+    color: var(--muted);
+    transition: transform .2s;
+}
+
+.topic.open .chevron {
+    transform: rotate(90deg);
+}
+
+.topic-body {
+    display: none;
+    padding: 0 20px 22px 52px;
+    border-top: 1px solid var(--border);
+}
+
+.topic.open .topic-body {
+    display: block;
+}
+
+h3 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    margin: 22px 0 7px;
+    font-size: 21px;
+}
+
+.topic-body p {
+    color: #4e534f;
+}
+
+ul {
+    padding-left: 21px;
+}
+
+li {
+    margin: 5px 0;
+}
+
+.must-know {
+    background: #f2f5f3;
+    border-left: 3px solid var(--success);
+    padding: 12px 15px;
+    border-radius: 7px;
+    margin: 15px 0;
+}
+
+.exam-trap {
+    background: #f7f3ea;
+    border-left: 3px solid var(--warning);
+    padding: 12px 15px;
+    border-radius: 7px;
+    margin: 15px 0;
+}
+
+.checklist {
+    display: grid;
+    gap: 7px;
+}
+
+.check {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 14px;
+}
+
+.check input {
+    margin-top: 5px;
+    accent-color: var(--success);
+}
+
+/* ---------- TABLE ---------- */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+th, td {
+    border-bottom: 1px solid var(--border);
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    color: var(--muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+}
+
+/* ---------- FLOW ---------- */
+
+.flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin: 18px 0;
+}
+
+.flow-box {
+    background: var(--accent-soft);
+    color: #34525e;
+    padding: 9px 13px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.arrow {
+    color: var(--muted);
+}
+
+/* ---------- FOOTER ---------- */
+
+footer {
+    max-width: 1250px;
+    margin: 60px auto 30px;
+    padding: 25px 20px;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    aside {
+        position: static;
+    }
+
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .topic-body {
+        padding-left: 20px;
+    }
+
+    .topic-tag {
+        display: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+        <div class="eyebrow">Microsoft Azure Administrator</div>
+        <h1>AZ-104 Study Hub</h1>
+        <p class="subtitle">
+            A structured learning map for Azure administrators.
+            Learn the service, understand the concept, practice it,
+            then become exam-ready.
+        </p>
+    </div>
+</header>
+
+<div class="topbar">
+    <div class="topbar-inner">
+        <input
+            id="search"
+            class="search"
+            type="search"
+            placeholder="Search Azure topics, services, concepts..."
+        >
+        <button onclick="expandAll()">Expand all</button>
+        <button onclick="collapseAll()">Collapse</button>
+        <button onclick="resetProgress()">Reset</button>
+    </div>
+</div>
+
+<div class="layout">
+
+<aside>
+    <div class="nav-card">
+        <div class="nav-title">Study Map</div>
+
+        <a class="nav-link" href="#overview">Overview</a>
+        <a class="nav-link" href="#identity">01 Identity & Governance</a>
+        <a class="nav-link" href="#storage">02 Storage</a>
+        <a class="nav-link" href="#compute">03 Compute</a>
+        <a class="nav-link" href="#networking">04 Networking</a>
+        <a class="nav-link" href="#monitoring">05 Monitoring</a>
+        <a class="nav-link" href="#backup">06 Backup & Recovery</a>
+        <a class="nav-link" href="#admin">07 Azure Administration</a>
+        <a class="nav-link" href="#exam">Exam Thinking</a>
+    </div>
+</aside>
+
+<main>
+
+<!-- DASHBOARD -->
+
+<section id="overview" class="section">
+
+    <div class="dashboard">
+
+        <div class="stat">
+            <div class="stat-number" id="completed">0</div>
+            <div class="stat-label">Topics completed</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">7</div>
+            <div class="stat-label">Core domains</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number" id="percentage">0%</div>
+            <div class="stat-label">Learning progress</div>
+            <div class="progress">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">AZ-104</div>
+            <div class="stat-label">Administrator</div>
+        </div>
+
+    </div>
+
+    <div class="section-header">
+        <div>
+            <div class="section-number">START HERE</div>
+            <h2>How to think about AZ-104</h2>
+        </div>
+    </div>
+
+    <p class="section-description">
+        AZ-104 is less about memorising isolated Azure services and more
+        about understanding how an administrator configures, secures,
+        monitors and troubleshoots Azure resources.
+    </p>
+
+    <div class="flow">
+        <div class="flow-box">Identity</div>
+        <div class="arrow">→</div>
+        <div class="flow-box">Governance</div>
+        <div class="arrow">→</div>
+        <div class="flow-box">Resources</div>
+        <div class="arrow">→</div>
+        <div class="flow-box">Networking</div>
+        <div class="arrow">→</div>
+        <div class="flow-box">Storage / Compute</div>
+        <div class="arrow">→</div>
+        <div class="flow-box">Monitor</div>
+        <div class="arrow">→</div>
+        <div class="flow-box">Protect</div>
+    </div>
+
+</section>
+
+
+<!-- IDENTITY -->
+
+<section id="identity" class="section">
+
+<div class="section-header">
+    <div>
+        <div class="section-number">01</div>
+        <h2>Identity & Governance</h2>
+    </div>
+</div>
+
+<p class="section-description">
+    Understand who can access Azure, what they can do, where they can do it,
+    and how administrators enforce organisational standards.
+</p>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+    <div class="topic-title">Microsoft Entra ID</div>
+    <div class="topic-tag">Identity</div>
+    <div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<h3>What is it?</h3>
+
+<p>
+Microsoft Entra ID is Microsoft's cloud identity and access management
+service. It manages identities, authentication and access to Azure and
+other applications.
+</p>
+
+<h3>You should understand</h3>
+
+<div class="checklist">
+
+<label class="check">
+<input type="checkbox">
+Users and user accounts
+</label>
+
+<label class="check">
+<input type="checkbox">
+Groups
+</label>
+
+<label class="check">
+<input type="checkbox">
+Administrative roles
+</label>
+
+<label class="check">
+<input type="checkbox">
+Authentication concepts
+</label>
+
+<label class="check">
+<input type="checkbox">
+Multi-factor authentication
+</label>
+
+<label class="check">
+<input type="checkbox">
+Self-service password reset
+</label>
+
+<label class="check">
+<input type="checkbox">
+External identities / guest users
+</label>
+
+</div>
+
+<div class="must-know">
+<strong>AZ-104 mindset:</strong>
+Know the difference between an identity in Entra ID and permissions
+assigned to Azure resources through Azure RBAC.
+</div>
+
+<div class="exam-trap">
+<strong>Common trap:</strong>
+Entra roles and Azure RBAC roles are related to administration but are
+not interchangeable.
+</div>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Users & Groups</div>
+<div class="topic-tag">Identity</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<h3>Know how administrators manage</h3>
+
+<ul>
+<li>Create and manage users.</li>
+<li>Create security groups.</li>
+<li>Assign users to groups.</li>
+<li>Use groups when assigning access.</li>
+<li>Understand guest users.</li>
+<li>Understand bulk user management concepts.</li>
+</ul>
+
+<div class="must-know">
+Group-based access is generally easier to maintain than assigning
+permissions individually to many users.
+</div>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Azure RBAC</div>
+<div class="topic-tag">Governance</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<h3>The core model</h3>
+
+<div class="flow">
+<div class="flow-box">Security Principal</div>
+<div class="arrow">+</div>
+<div class="flow-box">Role Definition</div>
+<div class="arrow">+</div>
+<div class="flow-box">Scope</div>
+<div class="arrow">→</div>
+<div class="flow-box">Role Assignment</div>
+</div>
+
+<h3>Know these scopes</h3>
+
+<ul>
+<li>Management group</li>
+<li>Subscription</li>
+<li>Resource group</li>
+<li>Individual resource</li>
+</ul>
+
+<h3>Important built-in roles</h3>
+
+<table>
+<tr>
+<th>Role</th>
+<th>General purpose</th>
+</tr>
+
+<tr>
+<td>Owner</td>
+<td>Full management including access management</td>
+</tr>
+
+<tr>
+<td>Contributor</td>
+<td>Manage resources but cannot manage access</td>
+</tr>
+
+<tr>
+<td>Reader</td>
+<td>View resources</td>
+</tr>
+</table>
+
+<div class="exam-trap">
+<strong>Exam trap:</strong>
+Contributor does NOT have permission to assign RBAC roles.
+Owner does.
+</div>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Subscriptions & Management Groups</div>
+<div class="topic-tag">Governance</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<h3>Hierarchy</h3>
+
+<div class="flow">
+<div class="flow-box">Tenant</div>
+<div class="arrow">→</div>
+<div class="flow-box">Management Group</div>
+<div class="arrow">→</div>
+<div class="flow-box">Subscription</div>
+<div class="arrow">→</div>
+<div class="flow-box">Resource Group</div>
+<div class="arrow">→</div>
+<div class="flow-box">Resource</div>
+</div>
+
+<p>
+Management groups allow governance and policy to be applied across
+multiple subscriptions.
+</p>
+
+<div class="must-know">
+Understand where policies and RBAC assignments can be applied and how
+permissions can inherit down the hierarchy.
+</div>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Azure Policy</div>
+<div class="topic-tag">Governance</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<h3>Purpose</h3>
+
+<p>
+Azure Policy evaluates resources against organisational rules and can
+audit or enforce desired configurations.
+</p>
+
+<h3>Know the difference</h3>
+
+<ul>
+<li><strong>RBAC:</strong> Who can perform an action?</li>
+<li><strong>Policy:</strong> What configurations are allowed or required?</li>
+</ul>
+
+<h3>Typical scenarios</h3>
+
+<ul>
+<li>Restrict allowed regions.</li>
+<li>Require tags.</li>
+<li>Audit resource configurations.</li>
+<li>Enforce security requirements.</li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Tags & Resource Governance</div>
+<div class="topic-tag">Governance</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<ul>
+<li>Understand tags as metadata.</li>
+<li>Use tags for cost allocation.</li>
+<li>Use tags for organisation and reporting.</li>
+<li>Understand that tags are not security controls.</li>
+<li>Understand Azure Policy can enforce tagging requirements.</li>
+</ul>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- STORAGE -->
+
+<section id="storage" class="section">
+
+<div class="section-header">
+<div>
+<div class="section-number">02</div>
+<h2>Storage</h2>
+</div>
+</div>
+
+<p class="section-description">
+Azure Storage is a major AZ-104 area. Learn the storage services,
+redundancy models, security mechanisms and lifecycle controls.
+</p>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Storage Accounts</div>
+<div class="topic-tag">Storage</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<h3>Know the architecture</h3>
+
+<div class="flow">
+<div class="flow-box">Storage Account</div>
+<div class="arrow">→</div>
+<div class="flow-box">Blob</div>
+<div class="arrow">+</div>
+<div class="flow-box">Files</div>
+<div class="arrow">+</div>
+<div class="flow-box">Queues</div>
+<div class="arrow">+</div>
+<div class="flow-box">Tables</div>
+</div>
+
+<h3>You should understand</h3>
+
+<ul>
+<li>Storage account types.</li>
+<li>Performance tiers.</li>
+<li>Replication.</li>
+<li>Access tiers.</li>
+<li>Security settings.</li>
+<li>Networking options.</li>
+<li>Encryption.</li>
+</ul>
+
+<div class="exam-trap">
+Don't confuse performance tier with redundancy.
+They solve different problems.
+</div>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Blob Storage</div>
+<div class="topic-tag">Storage</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<h3>Know</h3>
+
+<ul>
+<li>Containers.</li>
+<li>Blobs.</li>
+<li>Hot access tier.</li>
+<li>Cool access tier.</li>
+<li>Cold access tier.</li>
+<li>Archive tier.</li>
+<li>Lifecycle management.</li>
+<li>Blob versioning.</li>
+<li>Soft delete.</li>
+<li>Snapshots.</li>
+</ul>
+
+<div class="must-know">
+Think of Blob Storage when the requirement involves large amounts of
+unstructured object data such as documents, images, backups or logs.
+</div>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Azure Files</div>
+<div class="topic-tag">Storage</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<p>
+Azure Files provides managed file shares accessible using protocols such
+as SMB. It is useful when applications need a shared filesystem rather
+than object storage.
+</p>
+
+<ul>
+<li>File shares.</li>
+<li>SMB.</li>
+<li>NFS concepts.</li>
+<li>Mounting file shares.</li>
+<li>Identity-based access.</li>
+<li>Snapshots.</li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Storage Security & SAS</div>
+<div class="topic-tag">Security</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<h3>Understand</h3>
+
+<ul>
+<li>Storage account keys.</li>
+<li>Shared Access Signatures.</li>
+<li>Stored access policies.</li>
+<li>Microsoft Entra-based access.</li>
+<li>Encryption.</li>
+<li>HTTPS requirements.</li>
+<li>Public access controls.</li>
+</ul>
+
+<div class="exam-trap">
+SAS provides delegated, limited access. It is not the same thing as
+giving someone your storage account key.
+</div>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Storage Redundancy</div>
+<div class="topic-tag">Availability</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<h3>Know the concepts</h3>
+
+<ul>
+<li>LRS — locally redundant storage.</li>
+<li>ZRS — zone-redundant storage.</li>
+<li>GRS — geo-redundant storage.</li>
+<li>GZRS — geo-zone-redundant storage.</li>
+<li>Read-access variants.</li>
+</ul>
+
+<div class="must-know">
+When a question asks about resilience, identify whether the requirement
+is protection against disk failure, datacenter/zone failure, or regional
+failure.
+</div>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- COMPUTE -->
+
+<section id="compute" class="section">
+
+<div class="section-header">
+<div>
+<div class="section-number">03</div>
+<h2>Compute</h2>
+</div>
+</div>
+
+<p class="section-description">
+Learn how Azure runs workloads, scales them and keeps them available.
+</p>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Azure Virtual Machines</div>
+<div class="topic-tag">Compute</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<h3>Know the VM lifecycle</h3>
+
+<div class="flow">
+<div class="flow-box">Image</div>
+<div class="arrow">→</div>
+<div class="flow-box">VM</div>
+<div class="arrow">→</div>
+<div class="flow-box">Disk</div>
+<div class="arrow">→</div>
+<div class="flow-box">Network Interface</div>
+<div class="arrow">→</div>
+<div class="flow-box">VNet</div>
+</div>
+
+<h3>Study</h3>
+
+<ul>
+<li>VM sizes.</li>
+<li>Operating system images.</li>
+<li>Managed disks.</li>
+<li>Disk types.</li>
+<li>VM networking.</li>
+<li>Extensions.</li>
+<li>Availability options.</li>
+<li>Scaling.</li>
+<li>Start / stop / restart operations.</li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Managed Disks</div>
+<div class="topic-tag">Compute</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<ul>
+<li>Standard HDD.</li>
+<li>Standard SSD.</li>
+<li>Premium SSD.</li>
+<li>Ultra Disk concepts.</li>
+<li>Disk snapshots.</li>
+<li>Disk encryption.</li>
+<li>Disk performance concepts.</li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Availability Sets & Zones</div>
+<div class="topic-tag">Availability</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<h3>Think about failure domains</h3>
+
+<ul>
+<li>Fault domains.</li>
+<li>Update domains.</li>
+<li>Availability zones.</li>
+<li>Regional considerations.</li>
+</ul>
+
+<div class="exam-trap">
+Availability sets and availability zones are different mechanisms.
+Know what kind of failure each protects against.
+</div>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Virtual Machine Scale Sets</div>
+<div class="topic-tag">Scaling</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<p>
+VM Scale Sets allow administrators to manage groups of load-balanced
+VM instances and scale them based on demand.
+</p>
+
+<ul>
+<li>Instance counts.</li>
+<li>Autoscaling.</li>
+<li>Scaling rules.</li>
+<li>VM images.</li>
+<li>Load balancing.</li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Azure App Service</div>
+<div class="topic-tag">PaaS</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<ul>
+<li>App Service plans.</li>
+<li>Web apps.</li>
+<li>Deployment settings.</li>
+<li>Deployment slots.</li>
+<li>Scaling.</li>
+<li>Certificates and custom domains.</li>
+<li>Application settings.</li>
+<li>Backup concepts.</li>
+</ul>
+
+<div class="must-know">
+Understand the difference between the App Service itself and the
+App Service Plan that provides compute resources.
+</div>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Containers</div>
+<div class="topic-tag">Compute</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<ul>
+<li>Container images.</li>
+<li>Azure Container Registry.</li>
+<li>Azure Container Instances.</li>
+<li>Container Apps concepts.</li>
+<li>Container networking.</li>
+</ul>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- NETWORKING -->
+
+<section id="networking" class="section">
+
+<div class="section-header">
+<div>
+<div class="section-number">04</div>
+<h2>Networking</h2>
+</div>
+</div>
+
+<p class="section-description">
+Networking is one of the most important conceptual areas in AZ-104.
+Understand how traffic moves, what controls it and how networks connect.
+</p>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Virtual Networks</div>
+<div class="topic-tag">Networking</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<h3>Core structure</h3>
+
+<div class="flow">
+<div class="flow-box">VNet</div>
+<div class="arrow">→</div>
+<div class="flow-box">Subnet</div>
+<div class="arrow">→</div>
+<div class="flow-box">NIC</div>
+<div class="arrow">→</div>
+<div class="flow-box">Resource</div>
+</div>
+
+<ul>
+<li>Address spaces.</li>
+<li>Subnets.</li>
+<li>Private IP addresses.</li>
+<li>Public IP addresses.</li>
+<li>Network interfaces.</li>
+<li>DNS settings.</li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Network Security Groups</div>
+<div class="topic-tag">Security</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<h3>Know the rule model</h3>
+
+<ul>
+<li>Inbound rules.</li>
+<li>Outbound rules.</li>
+<li>Priority.</li>
+<li>Source.</li>
+<li>Destination.</li>
+<li>Protocol.</li>
+<li>Port.</li>
+<li>Allow / deny.</li>
+</ul>
+
+<div class="exam-trap">
+Lower NSG priority numbers are evaluated before higher numbers.
+</div>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Routing</div>
+<div class="topic-tag">Networking</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<ul>
+<li>System routes.</li>
+<li>User-defined routes.</li>
+<li>Route tables.</li>
+<li>Next hop types.</li>
+<li>Default routes.</li>
+<li>Traffic forwarding.</li>
+</ul>
+
+<div class="must-know">
+When troubleshooting connectivity, think in order:
+DNS → route → NSG → firewall → application.
+</div>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">VNet Peering</div>
+<div class="topic-tag">Connectivity</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<p>
+VNet peering allows Azure virtual networks to communicate using the
+Azure backbone network.
+</p>
+
+<ul>
+<li>Same-region peering.</li>
+<li>Global VNet peering.</li>
+<li>Peering configuration.</li>
+<li>Traffic considerations.</li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Azure DNS</div>
+<div class="topic-tag">Networking</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<ul>
+<li>DNS zones.</li>
+<li>DNS records.</li>
+<li>Record types.</li>
+<li>Private DNS zones.</li>
+<li>VNet links.</li>
+<li>Name resolution.</li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">VPN Gateway</div>
+<div class="topic-tag">Connectivity</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<ul>
+<li>Point-to-site VPN.</li>
+<li>Site-to-site VPN.</li>
+<li>VPN gateways.</li>
+<li>Local network gateways.</li>
+<li>Connection concepts.</li>
+<li>Authentication considerations.</li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Load Balancing</div>
+<div class="topic-tag">Networking</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<h3>Know the major Azure options</h3>
+
+<ul>
+<li>Azure Load Balancer.</li>
+<li>Application Gateway.</li>
+<li>Azure Front Door concepts.</li>
+<li>Traffic distribution.</li>
+<li>Health probes.</li>
+</ul>
+
+<div class="exam-trap">
+Load Balancer operates primarily at Layer 4.
+Application Gateway provides Layer 7 HTTP/HTTPS capabilities.
+</div>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- MONITORING -->
+
+<section id="monitoring" class="section">
+
+<div class="section-header">
+<div>
+<div class="section-number">05</div>
+<h2>Monitoring</h2>
+</div>
+</div>
+
+<p class="section-description">
+Learn how administrators observe Azure resources, detect problems and
+respond to operational events.
+</p>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Azure Monitor</div>
+<div class="topic-tag">Monitoring</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<p>
+Azure Monitor collects and analyses telemetry from Azure resources,
+applications and infrastructure.
+</p>
+
+<ul>
+<li>Metrics.</li>
+<li>Logs.</li>
+<li>Alerts.</li>
+<li>Activity logs.</li>
+<li>Diagnostic settings.</li>
+<li>Workbooks.</li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Log Analytics</div>
+<div class="topic-tag">Monitoring</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<p>
+Log Analytics workspaces provide a central location for querying and
+analysing collected log data.
+</p>
+
+<h3>Know</h3>
+
+<ul>
+<li>Workspaces.</li>
+<li>Tables.</li>
+<li>Queries.</li>
+<li>KQL concepts.</li>
+<li>Data sources.</li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Alerts</div>
+<div class="topic-tag">Operations</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<ul>
+<li>Alert rules.</li>
+<li>Conditions.</li>
+<li>Actions.</li>
+<li>Action groups.</li>
+<li>Metric alerts.</li>
+<li>Log alerts.</li>
+</ul>
+
+<div class="must-know">
+Understand the difference between detecting an event and defining what
+Azure should do after the event is detected.
+</div>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- BACKUP -->
+
+<section id="backup" class="section">
+
+<div class="section-header">
+<div>
+<div class="section-number">06</div>
+<h2>Backup & Recovery</h2>
+</div>
+</div>
+
+<p class="section-description">
+Understand how Azure protects workloads and how administrators recover
+resources after failure or accidental deletion.
+</p>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Azure Backup</div>
+<div class="topic-tag">Protection</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<ul>
+<li>Recovery Services vaults.</li>
+<li>Backup policies.</li>
+<li>Backup schedules.</li>
+<li>Retention.</li>
+<li>Recovery points.</li>
+<li>Restore operations.</li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Site Recovery</div>
+<div class="topic-tag">DR</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<p>
+Azure Site Recovery is designed for disaster recovery and workload
+replication.
+</p>
+
+<ul>
+<li>Replication.</li>
+<li>Recovery plans.</li>
+<li>Failover.</li>
+<li>Test failover.</li>
+<li>Failback concepts.</li>
+</ul>
+
+<div class="exam-trap">
+Backup and disaster recovery are not the same thing.
+Backup focuses on recovering data; Site Recovery focuses on continuity
+through replication and failover.
+</div>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- ADMIN -->
+
+<section id="admin" class="section">
+
+<div class="section-header">
+<div>
+<div class="section-number">07</div>
+<h2>Azure Administration</h2>
+</div>
+</div>
+
+<p class="section-description">
+The administrator skillset: deploying, managing, securing and
+troubleshooting Azure resources.
+</p>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Azure Resource Manager</div>
+<div class="topic-tag">Platform</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<p>
+Azure Resource Manager provides the management layer for Azure
+resources.
+</p>
+
+<ul>
+<li>Resource groups.</li>
+<li>Resource providers.</li>
+<li>ARM templates.</li>
+<li>Deployments.</li>
+<li>Locks.</li>
+<li>Tags.</li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Resource Groups</div>
+<div class="topic-tag">Administration</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<ul>
+<li>Logical grouping of resources.</li>
+<li>RBAC scope.</li>
+<li>Policy scope.</li>
+<li>Lifecycle considerations.</li>
+<li>Resource group deletion.</li>
+<li>Resource movement concepts.</li>
+</ul>
+
+<div class="exam-trap">
+A resource group is a management boundary, not a physical container.
+Resources in a resource group can exist in different regions.
+</div>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Resource Locks</div>
+<div class="topic-tag">Protection</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<ul>
+<li>CanNotDelete locks.</li>
+<li>ReadOnly locks.</li>
+<li>Lock inheritance.</li>
+<li>Lock scope.</li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="topic">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Azure CLI & PowerShell</div>
+<div class="topic-tag">Tools</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<h3>Be comfortable with the idea of</h3>
+
+<ul>
+<li>Creating resources.</li>
+<li>Listing resources.</li>
+<li>Querying resource properties.</li>
+<li>Updating resources.</li>
+<li>Deleting resources.</li>
+<li>Using parameters.</li>
+<li>Working with resource IDs.</li>
+</ul>
+
+<div class="must-know">
+You don't need to memorise every command. Understand what the command
+is trying to accomplish and recognise common Azure CLI / PowerShell
+patterns.
+</div>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- EXAM THINKING -->
+
+<section id="exam" class="section">
+
+<div class="section-header">
+<div>
+<div class="section-number">EXAM</div>
+<h2>How to Think Through AZ-104 Questions</h2>
+</div>
+</div>
+
+<p class="section-description">
+When you see an exam scenario, don't immediately look for the service
+name. Translate the requirement into an Azure concept first.
+</p>
+
+
+<div class="topic open">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">The Administrator Decision Tree</div>
+<div class="topic-tag">Strategy</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<h3>1. Who?</h3>
+
+<p>
+Is the question about identities, permissions, authentication or access?
+Think Entra ID and RBAC.
+</p>
+
+<h3>2. What?</h3>
+
+<p>
+What resource is being managed? VM, storage account, VNet, database,
+App Service, etc.
+</p>
+
+<h3>3. Where?</h3>
+
+<p>
+What scope is involved? Management group, subscription, resource group,
+resource, subnet, etc.
+</p>
+
+<h3>4. Who can do it?</h3>
+
+<p>
+Think RBAC roles and scope.
+</p>
+
+<h3>5. What configuration is required?</h3>
+
+<p>
+Think Azure Policy, resource settings, NSGs, storage configuration,
+network configuration, etc.
+</p>
+
+<h3>6. How does traffic/data move?</h3>
+
+<p>
+Think networking, routing, DNS, storage access and security controls.
+</p>
+
+<h3>7. What happens when something fails?</h3>
+
+<p>
+Think availability zones, redundancy, backup, recovery and monitoring.
+</p>
+
+</div>
+</div>
+
+
+<div class="topic open">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">High-Value Comparisons to Master</div>
+<div class="topic-tag">Exam</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<table>
+
+<tr>
+<th>Know the difference</th>
+<th>Core idea</th>
+</tr>
+
+<tr>
+<td>Entra ID vs Azure RBAC</td>
+<td>Identity/authentication vs Azure resource authorization</td>
+</tr>
+
+<tr>
+<td>RBAC vs Azure Policy</td>
+<td>Who can act vs what configuration is allowed</td>
+</tr>
+
+<tr>
+<td>Availability Set vs Availability Zone</td>
+<td>Different approaches to workload resilience</td>
+</tr>
+
+<tr>
+<td>Blob vs Azure Files</td>
+<td>Object storage vs managed file shares</td>
+</tr>
+
+<tr>
+<td>Backup vs Site Recovery</td>
+<td>Data recovery vs disaster recovery/replication</td>
+</tr>
+
+<tr>
+<td>NSG vs Route Table</td>
+<td>Traffic filtering vs traffic routing</td>
+</tr>
+
+<tr>
+<td>Load Balancer vs Application Gateway</td>
+<td>Layer 4 vs Layer 7 application-aware load balancing</td>
+</tr>
+
+<tr>
+<td>LRS vs ZRS vs GRS/GZRS</td>
+<td>Different redundancy scopes</td>
+</tr>
+
+</table>
+
+</div>
+</div>
+
+
+<div class="topic open">
+
+<div class="topic-header" onclick="toggleTopic(this)">
+<div class="topic-title">Final Exam Readiness Checklist</div>
+<div class="topic-tag">Checklist</div>
+<div class="chevron">›</div>
+</div>
+
+<div class="topic-body">
+
+<div class="checklist">
+
+<label class="check">
+<input type="checkbox">
+I understand Azure subscriptions and resource groups.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand Microsoft Entra ID.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I can explain Azure RBAC.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand Azure Policy and tags.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand storage accounts and redundancy.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand Blob Storage and Azure Files.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand SAS and storage security.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I can deploy and configure Azure VMs.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand managed disks.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand availability and scaling.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand VNets and subnets.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand NSGs.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand routing and VNet peering.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand DNS.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand VPN connectivity.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand Azure Load Balancer and Application Gateway.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand Azure Monitor.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand Log Analytics and KQL concepts.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand Azure Backup.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I understand Site Recovery.
+</label>
+
+<label class="check">
+<input type="checkbox">
+I can troubleshoot common Azure administration scenarios.
+</label>
+
+</div>
+
+</div>
+</div>
+
+</section>
+
+</main>
+</div>
+
+
+<footer>
+    AZ-104 Study Hub · Personal learning dashboard ·
+    Your progress is stored locally in this browser.
+</footer>
+
+
+<script>
+
+/* ---------- TOPIC ACCORDIONS ---------- */
+
+function toggleTopic(header) {
+    const topic = header.parentElement;
+    topic.classList.toggle("open");
+}
+
+
+/* ---------- EXPAND / COLLAPSE ---------- */
+
+function expandAll() {
+    document.querySelectorAll(".topic").forEach(topic => {
+        topic.classList.add("open");
+    });
+}
+
+function collapseAll() {
+    document.querySelectorAll(".topic").forEach(topic => {
+        topic.classList.remove("open");
+    });
+}
+
+
+/* ---------- SEARCH ---------- */
+
+const search = document.getElementById("search");
+
+search.addEventListener("input", function() {
+
+    const query = this.value.toLowerCase().trim();
+
+    document.querySelectorAll(".topic").forEach(topic => {
+
+        const text = topic.innerText.toLowerCase();
+
+        if (!query || text.includes(query)) {
+            topic.style.display = "";
+        } else {
+            topic.style.display = "none";
+        }
+
+        if (query && text.includes(query)) {
+            topic.classList.add("open");
+        }
+
+    });
+
+});
+
+
+/* ---------- PROGRESS ---------- */
+
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+checkboxes.forEach((checkbox, index) => {
+
+    const saved = localStorage.getItem("az104-check-" + index);
+
+    if (saved === "true") {
+        checkbox.checked = true;
+    }
+
+    checkbox.addEventListener("change", function() {
+
+        localStorage.setItem(
+            "az104-check-" + index,
+            this.checked
+        );
+
+        updateProgress();
+
+    });
+
+});
+
+
+function updateProgress() {
+
+    const total = checkboxes.length;
+
+    let completed = 0;
+
+    checkboxes.forEach(box => {
+
+        if (box.checked) {
+            completed++;
+        }
+
+    });
+
+    const percentage =
+        total === 0
+        ? 0
+        : Math.round((completed / total) * 100);
+
+    document.getElementById("completed").textContent = completed;
+
+    document.getElementById("percentage").textContent =
+        percentage + "%";
+
+    document.getElementById("progressBar").style.width =
+        percentage + "%";
+}
+
+
+/* ---------- RESET ---------- */
+
+function resetProgress() {
+
+    const confirmed =
+        confirm(
+            "Reset all AZ-104 learning progress?"
+        );
+
+    if (!confirmed) return;
+
+    checkboxes.forEach((checkbox, index) => {
+
+        checkbox.checked = false;
+
+        localStorage.removeItem(
+            "az104-check-" + index
+        );
+
+    });
+
+    updateProgress();
+}
+
+
+/* ---------- INITIALISE ---------- */
+
+updateProgress();
+
+</script>
+
+</body>
+</html>
