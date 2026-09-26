@@ -1,6 +1,28 @@
 Azure Containerized Application Platform
 
-A hands-on Azure administration project using an existing Dockerized website to explore Azure Container Registry (ACR) and Azure Container Apps.
+Azure administration project using an existing Dockerized website to explore Azure Container Registry (ACR) and Azure Container Apps.
+
+                    Azure Subscription
+                           │
+                  rg-container-platform
+                           │
+          ┌────────────────┼─────────────────┐
+          │                │                 │
+          ▼                ▼                 ▼
+       ACR             Container Apps    Log Analytics
+   acrskabiral         Environment         Workspace
+          │                 │
+          │                 │
+          ▼                 ▼
+   website:2.0       ca-skabiral-website
+                         │
+                    Managed Identity
+                         │
+                      AcrPull
+                         │
+                         ▼
+                        ACR
+
 
 Project Goal
 
@@ -76,7 +98,7 @@ Internet ───►│   │       Container App      │   │
 
                      -----------------
 
-                     
+
 
 Azure Services
 
