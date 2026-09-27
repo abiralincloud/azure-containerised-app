@@ -8,44 +8,92 @@ The project deliberately includes real deployment troubleshooting, identity-base
 ----------------------------
 
 Architecture
+Architecture Topology
 
-                         ┌──────────────────────────────┐
-                         │       Azure Subscription     │
-                         │                              │
-                         │   rg-container-platform     │
-                         └──────────────┬───────────────┘
-                                        │
-             ┌──────────────────────────┼──────────────────────────┐
-             │                          │                          │
-             ▼                          ▼                          ▼
-   ┌──────────────────┐       ┌────────────────────┐      ┌──────────────────┐
-   │ Azure Container   │       │ Container Apps     │      │  Log Analytics   │
-   │ Registry (ACR)    │       │ Environment       │      │    Workspace     │
-   │                   │       │                    │      │                  │
-   │ acrskabiral       │       │ cae-container-     │      │ Container logs   │
-   │                   │       │ platform           │      │ KQL queries      │
-   │ skabiral-website  │       │                    │      │ Monitoring       │
-   │ :2.0              │       └─────────┬──────────┘      └──────────────────┘
-   └────────┬─────────┘                 │
-            │                           ▼
-            │                 ┌────────────────────┐
-            │                 │ ca-skabiral-       │
-            │                 │ website             │
-            │                 │                    │
-            │                 │ NGINX              │
-            │                 │ Linux/AMD64         │
-            │                 │ HTTP :80            │
-            │                 └─────────┬──────────┘
-            │                           │
-            │                           ▼
-            │                 ┌────────────────────┐
-            │                 │ Public HTTPS       │
-            │                 │ Container App URL  │
-            │                 └────────────────────┘
-            │
-            │  Managed Identity
-            │
-            └───────────────► AcrPull
+The following diagram represents the deployed Azure container platform and the flow between the application, container registry, identity, RBAC and monitoring services.
+
+
+flowchart TD
+
+    A["👤 User / Internet"]
+
+    subgraph AZURE["☁️ Microsoft Azure"]
+        
+        subgraph RG["📦 Resource Group<br/>rg-container-platform"]
+
+            subgraph REGISTRY["📦 Azure Container Registry"]
+                ACR["🔐 acrskabiral.azurecr.io"]
+                IMAGE["🐳 skabiral-website:2.0<br/>Linux / AMD64"]
+                ACR --> IMAGE
+            end
+
+            subgraph ENV["☁️ Azure Container Apps Environment"]
+                CAE["cae-container-platform"]
+
+                subgraph APP["🚀 Azure Container App"]
+                    APPNAME["ca-skabiral-website"]
+                    NGINX["NGINX<br/>Container :80"]
+                    INGRESS["🌐 HTTP / HTTPS Ingress"]
+                    
+                    APPNAME --> NGINX
+                    NGINX --> INGRESS
+                end
+
+                CAE --> APP
+            end
+
+            subgraph IDENTITY["🔐 Identity & Access"]
+                MI["System-Assigned<br/>Managed Identity"]
+                RBAC["Azure RBAC<br/>AcrPull"]
+                
+                MI --> RBAC
+            end
+
+            subgraph MONITOR["📊 Monitoring"]
+                LAW["Azure Log Analytics<br/>Workspace"]
+                LOGS["Container Logs"]
+                KQL["KQL Queries"]
+                
+                LAW --> LOGS
+                LOGS --> KQL
+            end
+
+        end
+    end
+
+    A --> INGRESS
+
+    IMAGE -->|"Container image pull"| APPNAME
+
+    APPNAME -->|"Uses"| MI
+    RBAC -->|"Read image"| ACR
+
+    APPNAME -->|"Logs"| LAW
+
+    style A fill:#0078D4,color:#fff,stroke:#005A9E,stroke-width:2px
+
+    style RG fill:#F3F6FA,stroke:#0078D4,stroke-width:2px
+
+    style REGISTRY fill:#FFF4CE,stroke:#FFB900,stroke-width:2px
+    style ACR fill:#FFF4CE,stroke:#FFB900
+    style IMAGE fill:#FFF4CE,stroke:#FFB900
+
+    style ENV fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px
+    style CAE fill:#E8F5E9,stroke:#2E7D32
+    style APP fill:#E8F5E9,stroke:#2E7D32
+    style APPNAME fill:#E8F5E9,stroke:#2E7D32
+    style NGINX fill:#E8F5E9,stroke:#2E7D32
+    style INGRESS fill:#E8F5E9,stroke:#2E7D32
+
+    style IDENTITY fill:#FCE4EC,stroke:#C2185B,stroke-width:2px
+    style MI fill:#FCE4EC,stroke:#C2185B
+    style RBAC fill:#FCE4EC,stroke:#C2185B
+
+    style MONITOR fill:#E3F2FD,stroke:#1565C0,stroke-width:2px
+    style LAW fill:#E3F2FD,stroke:#1565C0
+    style LOGS fill:#E3F2FD,stroke:#1565C0
+    style KQL fill:#E3F2FD,stroke:#1565C0
+
 
 ---------------------------------------
 
