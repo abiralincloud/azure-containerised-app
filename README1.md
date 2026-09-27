@@ -7,7 +7,6 @@ The project deliberately includes real deployment troubleshooting, identity-base
 
 ----------------------------
 
-
 Architecture
 
                          ┌──────────────────────────────┐
@@ -47,7 +46,6 @@ Architecture
             │  Managed Identity
             │
             └───────────────► AcrPull
-
 
 ---------------------------------------
 
