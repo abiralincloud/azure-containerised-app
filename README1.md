@@ -10,9 +10,11 @@ The project deliberately includes real deployment troubleshooting, identity-base
 Architecture
 Architecture Topology
 
+## 🏗️ Architecture Topology
+
 The following diagram represents the deployed Azure container platform and the flow between the application, container registry, identity, RBAC and monitoring services.
 
-
+```mermaid
 flowchart TD
 
     A["👤 User / Internet"]
